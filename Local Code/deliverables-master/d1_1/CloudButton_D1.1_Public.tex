@@ -1,0 +1,348 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{mathpazo} %font style
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} %allow accents and special characters
+\usepackage{amsmath,amssymb,amsfonts,textcomp}
+\usepackage{color}
+\usepackage[table,usenames,dvipsnames]{xcolor}
+\usepackage{array}
+\usepackage{hhline}
+\usepackage{lastpage} %provides: \pageref{LastPage}
+\usepackage{graphics} %for graphics, but also for \resizebox command
+\usepackage{graphicx} %for graphics, allowing imag	e resize
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{subfig}
+\usepackage{colortbl}
+\usepackage{wrapfig}
+\usepackage{ulem}
+\usepackage{eurosym}
+\usepackage{multirow}
+\usepackage{pbox}
+\usepackage[figureright]{rotating}
+\let\tttcs\tabcolsep
+\usepackage{enumerate}
+\usepackage{epstopdf}
+\usepackage{lscape}
+
+
+% to reduce extra space
+\usepackage{setspace}
+\usepackage[small,compact]{titlesec}
+
+% renumbering table references
+\numberwithin{table}{subsection} %numberwithin requires package amsmath; makes the table counter within the subsection context
+\renewcommand{\thetable}{\thesubsection\alph{table}} %subsectionnumber+letter
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+
+%% formating long tables
+\newcommand{\longdesc}{
+  \hline
+  {\bf Description of work}\newline\\
+ \endfirsthead
+  \hline
+  {\bf Description of work} {\small\sl - Continued}\newline\\
+ \endhead
+  \hline%
+  \multicolumn{1}{r}{{\small\sl Continued on next page}}\\
+ \endfoot
+  \hline
+ \endlastfoot
+}
+%% end formating long tables
+
+%% multicolumn for 2 columns
+\newcommand{\twocol}[1]{\multicolumn{2}{|l|}{{\bf #1}}}
+\newcommand{\twocolgray}[1]{\multicolumn{2}{|l|}{\cellcolor[gray]{0.8} #1}}
+\newcommand{\twocoltext}[1]{\twocol{#1} & & \\\hline}
+\newcommand{\onecoltext}[1]{ & #1 & & \\\hline}
+
+%hyperref must be the last package
+\usepackage{hyperref} % most common usages: \href{url}{text}, \hyperref[labelname]{text}
+\hypersetup{pdftex, colorlinks=true, linkcolor=black, citecolor=black,%
+filecolor=black, pagecolor=black, urlcolor=black, pdftitle=, pdfauthor=,%
+pdfsubject=, pdfkeywords=}
+\usepackage[all]{hypcap} %fixes erroneous pointing to figure and tables,
+% where the caption and the label are put at the bottom of the content.
+
+% Table of contents style
+\renewcommand\contentsname{Table of Contents}
+% Page layout (geometry)
+\usepackage[a4paper,
+    top=1.25cm,
+    bottom=1.25cm,
+    left=2cm,
+    right=2cm,
+    includehead=true,
+    includefoot=true]{geometry} %to learn why, read: http://ftp.udc.es/CTAN/macros/latex/contrib/geometry/geometry.pdf
+% Footnote rule
+\setlength{\skip\footins}{0.119cm}
+\renewcommand\footnoterule{\vspace*{-0.018cm}\setlength\leftskip{0pt}%
+\setlength\rightskip{0pt plus 1fil}\noindent\textcolor{black}{%
+\rule{0.25\columnwidth}{0.018cm}}\vspace*{0.101cm}}
+% Caption vertical spaces
+\setlength\abovecaptionskip{10pt}
+\setlength\belowcaptionskip{10pt}
+% Pages styles
+
+%% EDITABLE PART for HEADERS and FOOTERS
+
+\newcommand{\myfootar}{\hfill{\footnotesize  Page \thepage{} of \pageref{LastPage}}\hfill}
+\newcommand{\myfootro}{\hfill{\footnotesize \thepage{}}\hfill}
+\newcommand{\myhdr}{\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} @{}l@{}@{}r@{}}
+{\footnotesize H2020 825184} & {\footnotesize RIA }\\
+{\footnotesize 31/01/2019} & {\footnotesize CloudButton}\\\end{tabular*}}
+
+%% END EDITABLE PART FOR HEADERS and FOOTERS
+
+\makeatletter
+\newcommand\ps@OnlyFootPage{
+  \renewcommand\@oddhead{}
+  \renewcommand\@evenhead{}
+  \renewcommand\@oddfoot{\myfootar}
+  \renewcommand\@evenfoot{\@oddfoot}
+  \renewcommand\thepage{\arabic{page}}
+}
+\newcommand\ps@HeadAndFootPageTOC{
+  \renewcommand\@oddhead{\myhdr}
+  \renewcommand\@evenhead{\@oddhead}
+  \renewcommand\@oddfoot{\myfootro}
+  \renewcommand\@evenfoot{\@oddfoot}
+  \renewcommand\thepage{\roman{page}}
+}
+\newcommand\ps@HeadAndFootPage{
+  \renewcommand\@oddhead{\myhdr}
+  \renewcommand\@evenhead{\@oddhead}
+  \renewcommand\@oddfoot{\myfootar}
+  \renewcommand\@evenfoot{\@oddfoot}
+  \renewcommand\thepage{\arabic{page}}
+}
+
+\makeatother
+\pagestyle{OnlyFootPage}
+\title{D1.1 Public Project Website}
+\author{Author's names}
+
+\begin{document}
+%%%% FIRST PAGE: TITLE PAGE
+\clearpage\setcounter{page}{1}\pagestyle{empty}
+
+
+
+\begin{center}
+	\begin{center}
+		\includegraphics[width=4cm]{figures/cloudbutton_logo.eps}
+		\hfill
+		\includegraphics[width=3.5cm]{figures/eu_flag_eps.eps}
+	\end{center}
+\vspace*{1.3cm}
+\noindent {\large \textbf{HORIZON 2020 FRAMEWORK PROGRAMME}} \\
+\vspace*{0.6cm}
+\noindent \Huge \textbf{CloudButton} \\
+\vspace*{0.3cm}
+\noindent \normalsize (grant agreement No 825184) \\
+\vspace*{0.8cm}
+\noindent \LARGE \textbf{Serverless Data Analytics Platform}\\
+\vspace*{4.0cm}
+\noindent \LARGE \textbf{D1.1 Public Project Website} \\
+\vspace*{5.0cm}
+\noindent \large Due date of deliverable: 31-01-2019 \\
+\noindent \large Actual submission date: 31-01-2019\\
+\vspace*{3.0cm}
+
+Start date of project: 01-01-2019
+\hfill
+Duration: 36 months\\
+
+\end{center}
+
+
+
+
+%% blank page before index
+\newpage\pagestyle{empty}
+
+{
+\def\arraystretch{1.5} %  1 is the default, change whatever you need
+
+{\LARGE \textbf{Summary of the document}}
+
+\begin{center}
+    \begin{tabular}{ | l | p{10cm} |}
+    \hline
+    \cellcolor{gray!25} \textbf{Document Type} & Website  \\ \hline
+    \cellcolor{gray!25} \textbf{Dissemination level} & Public \\ \hline
+    \cellcolor{gray!25} \textbf{State} & v1.0 \\ \hline
+    \cellcolor{gray!25} \textbf{Number of pages} & \pageref{LastPage} \\ \hline
+    \cellcolor{gray!25} \textbf{WP/Task related to this document} & WP1 / T1.1 \\ \hline
+    \cellcolor{gray!25} \textbf{WP/Task responsible} & URV  \\ \hline
+    \cellcolor{gray!25} \textbf{Leader} & Gerard París \\ \hline
+    \cellcolor{gray!25} \textbf{Technical Manager} & Pedro García López \\ \hline
+    \cellcolor{gray!25} \textbf{Quality Manager} & Daniel Barcelona \\ \hline
+    \cellcolor{gray!25} \textbf{Author(s)} & Gerard París \\ \hline
+    \cellcolor{gray!25} \textbf{Partner(s) Contributing} & URV \\ \hline
+    \cellcolor{gray!25} \textbf{Document ID} & CloudButton$\_$D1.1$\_$Public.pdf \\ \hline
+    \cellcolor{gray!25} \textbf{Abstract} & This document summarizes the structure, the content and the functionalities of the public website of the CloudButton project. \\ \hline
+    \cellcolor{gray!25} \textbf{Keywords} & website, dissemination, communication \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+%%%% HISTORY OF CHANGES
+
+\newpage\pagestyle{empty}
+
+{
+\def\arraystretch{1.5} %  1 is the default, change whatever you need
+
+{\LARGE \textbf{History of changes}}
+
+\begin{center}
+    \begin{tabular}{ | l | l | p{3cm} | p{9cm} | }
+    \hline
+    \rowcolor[gray]{0.8}
+    \textbf{Version} &
+    \textbf{Date} &
+    \textbf{Author} &
+    \textbf{Summary of changes} \\ \hline
+
+    1.0 & 31-01-2019 & Gerard París & Initial version. \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+%%%% TABLE OF CONTENTS
+
+\clearpage\setcounter{page}{1}\pagestyle{HeadAndFootPageTOC}
+
+\tableofcontents % Inserts title 'Contents' and all chapters below
+% Unnumbered section will not appear in the TOC.
+% To make them appear in TOC you should do as follows:
+% \subsection*{Preface}
+% \addcontentsline{toc}{subsection}{Preface}
+%
+% You can also can add \listoffigures and \listoftables
+
+
+
+
+%%%% REST OF THE DOCUMENT: CONTENT
+
+\clearpage\setcounter{page}{1}\pagestyle{HeadAndFootPage}
+
+\section{Executive summary}
+
+The CloudButton website has been designed, developed and populated with initial content. 
+The website was launched in January 2019 and can be found at \url{http://cloudbutton.eu}
+
+Key features of the website are:
+\begin{itemize}
+\item Responsive web design. The website will dynamically adjust to the device of the viewer.
+\item The Homepage showcases the project objectives, latest news and events, deliverables and other outcomes of the project.
+\item Project information including use cases and partners.
+\item Links to the CloudButton Social Media pages
+\end{itemize}
+
+The website will continue to be maintained and updated as the project progresses.
+The project social media presence will be further developed by updates, interactions and community building activities.
+
+\newpage
+
+\section{Introduction}
+
+The project public website is part of the management and dissemination strategy of the CloudButton project. 
+It serves as a first source of information to the general public, particularly with regards to activities, news and public project results.
+In addition, it aims to attract potential collaborators to the project.
+
+The website implemented and described below is the initial version of the site that will be further maintained and updated with new information and functionalities as the project advances.
+
+\section{CloudButton website}
+
+The CloudButton website is available at \url{http://cloudbutton.eu} and \url{http://www.cloudbutton.eu} and is hosted at Universitat Rovira i Virgili (URV).
+The website was designed and developed with the following requirements:
+
+\begin{itemize}
+\item Attractive and functional design: to achieve an effective dissemination of the latest project news, events and results available.
+\item Responsive web design: the layout changes based on the size and capabilities of the device (phone, tablet, desktop computer, ...).
+\item Simple management tool: the maintenance must be easy and fast. 
+\end{itemize}
+
+\subsection{Website management tool}
+
+The CloudButton website was built using Jekyll\footnote{\url{https://jekyllrb.com/}}, a static-site generator that provides some of the benefits of a Content Management System (CMS) while avoiding the performance and security issues introduced by such database-driven sites. 
+
+A Jekyll webpage content can be maintained using lightweight text editors instead of web forms. Additionally, Jekyll allows us to use version control to track changes to the website. Jekyll is written in Ruby and it is distributed under the open source MIT license.
+
+\subsection{Website structure}
+
+
+The Website has been structured using a single page design that provides a quick and easy navigation to all the information about the project. The primary navigation of the site will be via the menu located at the top.
+Specifically, the Website (Fig.~\ref{fig:desktop}) is divided into several sections, including:
+
+\begin{itemize}
+\item Objectives: This provides a basic overview of the project objectives.
+\item Project News: News and events concerning the CloudButton Project. This section will be periodically updated.
+\item Use cases: This contains information about the 3 use cases of the project: genomics, metabolomics and geospatial data.
+\item Results: A list of all public deliverables and peer reviewed publications specifically related to the project. As the project advances, this section will include links to data sets, prototypes and other project outcomes.
+\item Project Partners: A list of all CloudButton Partners, including their logos and links to their institutional websites.
+\item Footer: This section includes contact details, links to social media, and the acknowledgement to the EU H020 programme.
+\end{itemize}
+
+The website uses a fully responsive Bootstrap\footnote{\url{https://getbootstrap.com/}}  template that allows it to  dynamically adjust to different sizes of device (Fig.~\ref{fig:mobile}). This template also supports responsive, full screen modal windows that are used to expand news or show more details about the use cases.
+
+\begin{figure}[hbt!]
+\centering
+\includegraphics[width=9cm]{figures/website_browser.png}
+\caption{CloudButton website main page (desktop browser).}
+\label{fig:desktop}
+\end{figure}
+
+\begin{figure}[hbt!]
+\centering
+\includegraphics[width=5cm]{figures/website_mobile.png}
+\caption{CloudButton website (with the navigation bar unfolded) as seen on small screen devices.}
+\label{fig:mobile}
+\end{figure}
+
+\section{Social media}
+
+The website includes links to CloudButton social media accounts (Twitter, YouTube). The CloudButton consortium will use Twitter as its main social media platform for the project.  At the same time the website was launched, we also created the Twitter account \href{https://twitter.com/cloudbutton2020}{\texttt{@cloudbutton2020}}~(Fig.~\ref{fig:twitter}) to disseminate information about project activities. Both the website and the Twitter account will be used for the public communication of all project activities and events.
+
+The Consortium will also use the \href{https://www.youtube.com/channel/UCJTICoSQJXlfgkoYP3-ltUA}{CloudButton YouTube channel} to share promotional videos that disseminate the achievements of the project.
+
+\begin{figure}[hbt!]
+\centering
+\includegraphics[width=10cm]{figures/twitter_account.png}
+\caption{CloudButton Twitter account.}
+\label{fig:twitter}
+\end{figure}
+
+
+\newpage
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+This deliverable presents the CloudButton public website.
+The objective of the website is to inform the general public about CloudButton and its achievements, as well as to attract potential collaborators to the project.
+
+The success of a project such as CloudButton depends on efficient communication and coordination, and the public site is an essential tool to achieve this goal. 
+The site provides public information, news, events and deliverables.
+It will be promoted through social media and during conferences and events where partners present the project.
+
+The \textit{.eu} domain name of \href{http://cloudbutton.eu}{\texttt{cloudbutton.eu}} has been registered for the site.
+The website will be continuously updated, adjusted and improved.
+
+%%%% REFERENCES
+
+\newpage %start bibliography at new page
+\bibliographystyle{ieeetr} %long list of styles at:
+\bibliography{citations} %filename of
+
+\end{document}

@@ -1,0 +1,1028 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{mathpazo} %font style
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} %allow accents and special characters
+\usepackage{amsmath,amssymb,amsfonts,textcomp}
+\usepackage{color}
+\usepackage[table,usenames,dvipsnames]{xcolor}
+\usepackage{array}
+\usepackage{hhline}
+\usepackage{lastpage} %provides: \pageref{LastPage}
+\usepackage{graphics} %for graphics, but also for \resizebox command
+\usepackage{graphicx} %for graphics, allowing imag	e resize
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{subfig}
+\usepackage{colortbl}
+\usepackage{wrapfig}
+\usepackage{ulem}
+\usepackage{eurosym}
+\usepackage{multirow}
+\usepackage{pbox}
+\usepackage[figureright]{rotating}
+\let\tttcs\tabcolsep
+\usepackage{enumerate}
+\usepackage{epstopdf}
+\usepackage{lscape}
+\usepackage{xspace}
+\usepackage[inline]{enumitem}
+\usepackage[title]{appendix}
+\usepackage[hyphens]{url}
+\usepackage{booktabs}
+
+
+% to reduce extra space
+\usepackage{setspace}
+\usepackage[small,compact]{titlesec}
+
+\newcommand{\proj}{CloudButton\xspace}
+
+% renumbering table references
+%\numberwithin{table}{subsection} %numberwithin requires package amsmath; makes the table counter within the subsection context
+%\renewcommand{\thetable}{\thesubsection\alph{table}} %subsectionnumber+letter
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+
+%% formating long tables
+\newcommand{\longdesc}{
+  \hline
+  {\bf Description of work}\newline\\
+ \endfirsthead
+  \hline
+  {\bf Description of work} {\small\sl - Continued}\newline\\
+ \endhead
+  \hline%
+  \multicolumn{1}{r}{{\small\sl Continued on next page}}\\
+ \endfoot
+  \hline
+ \endlastfoot
+}
+%% end formating long tables
+
+%% multicolumn for 2 columns
+\newcommand{\twocol}[1]{\multicolumn{2}{|l|}{{\bf #1}}}
+\newcommand{\twocolgray}[1]{\multicolumn{2}{|l|}{\cellcolor[gray]{0.8} #1}}
+\newcommand{\twocoltext}[1]{\twocol{#1} & & \\\hline}
+\newcommand{\onecoltext}[1]{ & #1 & & \\\hline}
+
+%hyperref must be the last package
+\usepackage{hyperref} % most common usages: \href{url}{text}, \hyperref[labelname]{text}
+\hypersetup{pdftex, colorlinks=true, linkcolor=black, citecolor=black,%
+filecolor=black, pagecolor=black, urlcolor=black, pdftitle=, pdfauthor=,%
+pdfsubject=, pdfkeywords=}
+\usepackage[all]{hypcap} %fixes erroneous pointing to figure and tables,
+% where the caption and the label are put at the bottom of the content.
+
+% Table of contents style
+\renewcommand\contentsname{Table of Contents}
+% Page layout (geometry)
+\usepackage[a4paper,
+    top=1.25cm,
+    bottom=1.25cm,
+    left=2cm,
+    right=2cm,
+    includehead=true,
+    includefoot=true]{geometry} %to learn why, read: http://ftp.udc.es/CTAN/macros/latex/contrib/geometry/geometry.pdf
+% Footnote rule
+\setlength{\skip\footins}{0.119cm}
+\renewcommand\footnoterule{\vspace*{-0.018cm}\setlength\leftskip{0pt}%
+\setlength\rightskip{0pt plus 1fil}\noindent\textcolor{black}{%
+\rule{0.25\columnwidth}{0.018cm}}\vspace*{0.101cm}}
+% Caption vertical spaces
+\setlength\abovecaptionskip{10pt}
+\setlength\belowcaptionskip{10pt}
+% Pages styles
+
+%% EDITABLE PART for HEADERS and FOOTERS
+
+\newcommand{\myfootar}{\hfill{\footnotesize  Page \thepage{} of \pageref{LastPage}}\hfill}
+\newcommand{\myfootro}{\hfill{\footnotesize \thepage{}}\hfill}
+\newcommand{\myhdr}{
+\bgroup
+\def\arraystretch{1}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} @{}l@{}@{}r@{}}
+{\footnotesize H2020 825184} & {\footnotesize RIA }\\
+{\footnotesize 18/03/2019} & {\footnotesize CloudButton}\\
+\end{tabular*}
+\egroup
+}
+
+%% END EDITABLE PART FOR HEADERS and FOOTERS
+
+\makeatletter
+\newcommand\ps@OnlyFootPage{
+  \renewcommand\@oddhead{}
+  \renewcommand\@evenhead{}
+  \renewcommand\@oddfoot{\myfootar}
+  \renewcommand\@evenfoot{\@oddfoot}
+  \renewcommand\thepage{\arabic{page}}
+}
+\newcommand\ps@HeadAndFootPageTOC{
+  \renewcommand\@oddhead{\myhdr}
+  \renewcommand\@evenhead{\@oddhead}
+  \renewcommand\@oddfoot{\myfootro}
+  \renewcommand\@evenfoot{\@oddfoot}
+  \renewcommand\thepage{\roman{page}}
+}
+\newcommand\ps@HeadAndFootPage{
+  \renewcommand\@oddhead{\myhdr}
+  \renewcommand\@evenhead{\@oddhead}
+  \renewcommand\@oddfoot{\myfootar}
+  \renewcommand\@evenfoot{\@oddfoot}
+  \renewcommand\thepage{\arabic{page}}
+}
+
+\makeatother
+\pagestyle{OnlyFootPage}
+\title{D1.2 Management Plan}
+\author{Author's names}
+
+\begin{document}
+%%%% FIRST PAGE: TITLE PAGE
+\clearpage\setcounter{page}{1}\pagestyle{empty}
+
+
+
+\begin{center}
+	\begin{center}
+		\includegraphics[width=4cm]{figures/cloudbutton_logo.eps}
+		\hfill
+		\includegraphics[width=3.5cm]{figures/eu_flag_eps.eps}
+	\end{center}
+\vspace*{1.3cm}
+\noindent {\large \textbf{HORIZON 2020 FRAMEWORK PROGRAMME}} \\
+\vspace*{0.6cm}
+\noindent \Huge \textbf{CloudButton} \\
+\vspace*{0.3cm}
+\noindent \normalsize (grant agreement No 825184) \\
+\vspace*{0.8cm}
+\noindent \LARGE \textbf{Serverless Data Analytics Platform}\\
+\vspace*{4.0cm}
+\noindent \LARGE \textbf{D1.2 Management Plan} \\
+\vspace*{5.0cm}
+\noindent \large Due date of deliverable: 28-02-2019 \\
+\noindent \large Actual submission date: 18-03-2019\\
+\vspace*{3.0cm}
+
+Start date of project: 01-01-2019
+\hfill
+Duration: 36 months\\
+
+\end{center}
+
+
+
+
+%% blank page before index
+\newpage\pagestyle{empty}
+
+{
+\def\arraystretch{1.5} %  1 is the default, change whatever you need
+
+{\LARGE \textbf{Summary of the document}}
+
+\begin{center}
+    \begin{tabular}{ | l | p{10cm} |}
+    \hline
+    \cellcolor{gray!25} \textbf{Document Type} & Report  \\ \hline
+    \cellcolor{gray!25} \textbf{Dissemination level} & Confidential \\ \hline
+    \cellcolor{gray!25} \textbf{State} & v1.0 \\ \hline
+    \cellcolor{gray!25} \textbf{Number of pages} & \pageref{LastPage} \\ \hline
+    \cellcolor{gray!25} \textbf{WP/Task related to this document} & WP1 / T1.1 T1.3 T1.4 \\ \hline
+    \cellcolor{gray!25} \textbf{WP/Task responsible} & URV  \\ \hline
+    \cellcolor{gray!25} \textbf{Leader} & Gerard París (URV) \\ \hline
+    \cellcolor{gray!25} \textbf{Technical Manager} & Pedro García (URV) \\ \hline
+    \cellcolor{gray!25} \textbf{Quality Manager} & Marc Sánchez (URV) \\ \hline
+    \cellcolor{gray!25} \textbf{Author(s)} & Gerard París (URV), Tristan Tarrant (RHAT). \\ \hline
+    \cellcolor{gray!25} \textbf{Partner(s) Contributing} & URV, RHAT. \\ \hline
+    \cellcolor{gray!25} \textbf{Document ID} & CloudButton$\_$D1.2$\_$Confidential.pdf \\ \hline
+    \cellcolor{gray!25} \textbf{Abstract} & Initial deliverable stating the management organisation and planning for the entire project. It also includes an
+Innovation Management plan with the definition of the processes and tools to trigger and deploy the creative
+capabilities of the partners for the continuous development of the project. \\ \hline
+    \cellcolor{gray!25} \textbf{Keywords} & management plan, innovation management plan, risk assessment, communication tools \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+%%%% HISTORY OF CHANGES
+
+\newpage\pagestyle{empty}
+
+{
+\def\arraystretch{1.5} %  1 is the default, change whatever you need
+
+{\LARGE \textbf{History of changes}}
+
+\begin{center}
+    \begin{tabular}{ | l | l | p{3cm} | p{9cm} | }
+    \hline
+    \rowcolor[gray]{0.8}
+    \textbf{Version} &
+    \textbf{Date} &
+    \textbf{Author} &
+    \textbf{Summary of changes} \\ \hline
+
+    0.1 & 21-02-2019 & Gerard París & First draft. \\ \hline
+    0.2 & 28-02-2019 & Gerard París & Management plan sections. \\ \hline
+    0.3 & 12-03-2019 & Tristan Tarrant & Innovation Management plan section. \\ \hline
+    0.4 & 13-03-2019 & Gerard París & Executive summary. Conclusions. \\ \hline
+    1.0 & 18-03-2019 & Pedro García & Approved by the technical manager. \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+%%%% TABLE OF CONTENTS
+
+\clearpage\setcounter{page}{1}\pagestyle{HeadAndFootPageTOC}
+
+\tableofcontents % Inserts title 'Contents' and all chapters below
+% Unnumbered section will not appear in the TOC.
+% To make them appear in TOC you should do as follows:
+% \subsection*{Preface}
+% \addcontentsline{toc}{subsection}{Preface}
+%
+% You can also can add \listoffigures and \listoftables
+
+
+
+%%%% REST OF THE DOCUMENT: CONTENT
+
+\clearpage\setcounter{page}{1}\pagestyle{HeadAndFootPage}
+
+\section{Executive summary}
+
+This deliverable contains an overview of the project objectives, the Project Management Plan, and the Innovation Management Plan.
+
+The Project Management Plan describes the consortium organisation, detailing the responsibilities of each consortium body. It states the procedures to monitor the progress of the project and to produce and review the deliverables. The management plan also includes the initial assessment of risk management and describes the tools that the consortium will use to properly communicate and collaborate.
+
+The Innovation Management Plan delivers an overview of the main approach and tools used to ensure proper innovation management throughout the entire duration of the project.
+
+The whole consortium already had a kick-off meeting in Tarragona, Spain, from 22 to 25 January 2019. During this meeting, general management processes were presented and the members of the different Consortium Bodies were appointed.
+
+The next project meeting will take place in London from 17 to 19 July 2019.
+
+\newpage
+
+\section{Project objectives}
+\label{sec:objectives}
+
+The main goal of the project is to create\textbf{ \proj: a Serverless Data Analytics Platform}. \proj will \textit{democratize big data} by overly simplifying the overall life cycle and programming model thanks to serverless technologies. 
+
+The core idea is to tap into stateless functions to enable radically-simpler, more user-friendly data processing systems. Average users of the cloud do not want to spend hours
+understanding complex analytics stacks (e.g., Spark, Scala, HDFS, Yarn) or struggle with the choice of instance types, cluster sizes, etc.  What they want is just a simple interface to execute their 
+optimized, single-machine code in parallel. \textbf{\proj} is the technological response to this emerging need.
+
+To demonstrate the impact of the project, we target two strategic settings with large data volumes and diverse analytics requirements: bioinformatics (genomics, metabolomics) and geospatial data (LiDAR, satellital).
+
+In order to achieve such ambitious objectives, the \proj project defines the following goals:
+
+\begin{description}
+
+\item [G-1]  \textbf{Create a High Performance Serverless Compute Engine for Big Data}: This is the foundational technology for the \proj platform that must overcome the current limitations of existing serverless platforms. In particular, it includes extensions to 
+\begin{enumerate*}[label={\roman*)}]
+\item support stateful and highly performant execution of serverless tasks, 
+\item optimized elasticity  and operations management of functions  thanks to new locality aware scheduling algorithms, 
+\item efficient QoS management of containers that host serverless functions, and 
+\item a Serverless Execution Framework supporting typical dataflow models.
+\end{enumerate*}
+
+\item [G-2]  \textbf{Support for Mutable Shared Data in Serverless Computing}: To simplify the transitioning from sequential to (massively-)parallel code, we will design of a new middleware that allows to quickly spawn and share mutable data structures in a serverless computing platform. Our Mutable Shared Data middleware will 
+\begin{enumerate*}[label={\roman*)}]
+\item offer an easy-to-use programming framework to add state to serverless computing, 
+\item provide dynamic data replication and tunable consistency to match the performance requirements of serverless data analytics, and 
+\item integrate this framework to an in-memory data grids for performance.
+\end{enumerate*}
+
+\item [G-3] \textbf{Design novel Serverless Cloud Programming Abstractions}: The overall objective of this work package is to provide a new programming
+  model for serverless cloud infrastructures that can express a wide range of  existing data-intensive applications with minimal changes. The programming model should at the same time, 
+\begin{enumerate*}[label={\roman*)}]
+\item preserve the benefits of a serverless execution model in terms of resource efficiency, performance, scalability and fault tolerance, 
+\item explicit support for stateful functions in applications, while offering guarantees with respect to the consistency and durability of the state.
+\end{enumerate*}
+  
+\end{description}
+
+Concerning the produced software, we will create an \textbf{open source reference implementation of the \proj platform}, benefiting from both well-established open source projects such as Apache OpenWhisk~\cite{openwhisk}, RedHat Infinispan~\cite{infinispan},  and Apache Arrow~\cite{arrow}, and novel ones such as 2017's PyWren project by UC Berkeley~\cite{PyWren2017}, among others. In particular, we outline three main software objectives:
+
+\begin{description}
+
+\item [S-1] \textbf{Serverless Compute Engine}: We will create the first FaaS compute engine  for Big Data analytics leveraging Apache OpenWhisk.The proposed serverless big data analytics platform and the execution framework will be based on the mature open source code base of Apache OpenWhisk, together with its Composer~\cite{composer}. The processing backend will be based on industry grade open source container technologies, such as Kubernetes.
+ \newpage
+
+\item [S-2] \textbf{Mutable Shared Data Middleware for Serverless Computing}: We will create Distributed Mutable Data Structures leveraging RedHat Infinispan In-Memory Data Grid. Our middleware will provide  language-level constructs for data persistence, dependability and concurrency control to serverless functions.  We will offer different data services such as linearizable shared objects, state machine replication, and transparent data sharding among others. We will also enhance Infinispan to enable processing of large amounts of data thanks to an overhauled persistence layer integrated within Infinispan’s internal asynchronous processing.
+ 
+\item [S-3] \textbf{\proj Toolkit: A Serverless Data Analytics Platform}:  The toolkit will implement on top of [S-1] and [S-2] the  Serverless Cloud Programming Abstractions that can express a wide range of  existing data-intensive applications with minimal changes. We will  develop new tools and methodologies to port existing   data-intensive applications from the HPC, data analytics and machine learning  domains to the \proj programming model. 
+
+\end{description}
+  \bigskip
+	
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/CLOUDBUTTON_project_figure}
+\caption{\proj project overview}
+\label{fig:project_overview}
+\end{figure}	
+	
+Although  speed of deployment and ease of use of a serverless  computing approach is a key enabler for \textbf{increased productivity},  the new radical approach behind
+	\proj must be accompanied by a similar\textbf{ performance}, if not better,   in comparison to state-of-the-art analysis methods.  This requires of a consistent evaluation to
+		demonstrate that a platform such as \proj could be the centerpiece of new distributed data processing platforms with both  high \textbf{productivity} and  \textbf{performance}.
+		
+	
+To validate the results of the project, we will obtain detailed benchmarking  of \proj with several experiments over large datasets.  More concretely, there are three experiments for each domain: genomics, metabolomics, and geospatial data, respectively. Furthermore, \proj will make use of several \textbf{relevant, industry-validated benchmarks} of all flavors to supply a complete and comprehensive evaluation of the project. 
+
+
+Fig.~\ref{fig:project_overview} shows an overview of the project, highlighting the main objectives of \proj, the open source projects that will serve as the basis for our platform, and the main use cases and datasets that will validate the results. Appendix \ref{appendix:work_plan} shows the \proj work plan structure at task level.
+
+Furthermore, to validate the usability of the platform, the consortium will devote important efforts to build  a User Community with a sufficient number of professional subjects from the use cases, which also includes external users and early adopters. An evaluation procedure will be established to determine if the data technologies developed are as effective as expected by the User Community. One important task of the User Community will be
+to evaluate productivity-related aspects such as whether \proj fulfills user requirements in terms of speed of deployment, user-friendliness, pricing models and simplicity in the programming abstractions (e.g., imperative code is easier to understand to users). All these aspects are central to determine whether \proj will be truly paving the way to democratize big data in the cloud. 
+
+\newpage
+
+\section{Project Management Plan}
+
+The management will be organized according to the size and requirements of the project and it will be based on experience gained by the coordinator in previous European project: FP7 Cloudspaces (2013-2015) and H2020 IOStack (2015-2017).
+
+Nevertheless rigorous project management procedures will be set up and followed for the entire duration of the project. 
+
+\subsection{Consortium organisation}
+
+The \proj consortium (Table~\ref{tab:consortium}) is comprised of ten partners from six different countries and is coordinated by Universitat Rovira i Virgili (URV). 
+This consortium has been carefully designed to create a balanced team between academia and industry to properly achieve the project objectives.
+The project includes four academic partners (URV, Imperial, IMT and EMBL), three large companies (IBM, ATOS, RHAT), a bioinformatics institute (TPI), a private foundation (MATRIX) and one SME (ANSWARE).
+
+
+{
+\def\arraystretch{1.5}
+\begin{table}[htbp]
+\caption{The CloudButton consortium}
+\label{tab:consortium}
+\begin{tabular}{ |p{1.5cm} | p{0.479\textwidth} | p{2.46cm} | l | }
+\hline
+\rowcolor[gray]{.8} \textbf{Partic. no.} & \textbf{Participant organisation name} &
+  \textbf{Participant\newline short name} & \textbf{Country} \\ \hline
+1 & Universitat Rovira i Virgili & URV & Spain \\ \hline
+2 & IBM Israel Science \& Technology Ltd. & IBM & Israel \\ \hline
+3 & Imperial College London & Imperial & United Kingdom \\ \hline
+4 & Institut Mines-Télécom & IMT & France \\ \hline
+5 & Red Hat Limited & RHAT & Ireland \\ \hline
+6 & European Molecular Biology Laboratory  & EMBL & Germany \\ \hline
+7 & Atos Spain SA & ATOS & Spain  \\ \hline
+8 & The Pirbright Institute & TPI & United Kingdom  \\ \hline
+9 & Answaretech SL & ANSWARE & Spain \\ \hline
+10 & The Matrix Foundation & MATRIX & Spain \\ \hline
+\end{tabular}
+\end{table}
+}
+
+The organisational structure of the Consortium comprises the following Consortium Bodies:
+
+\begin{itemize}
+\item \textbf{General Assembly}: as the ultimate decision-making body of the consortium
+\item \textbf{Executive Board}: as the supervisory body for the execution of the Project which shall report to and be accountable to the General Assembly.
+\item \textbf{The Coordinator}: as the legal entity acting as the intermediary between the Parties and the Funding Authority.
+\item \textbf{The Innovation Management Board}
+\end{itemize}
+
+The Consortium Agreement details the operational procedures for all Consortium Bodies (representation in meetings, voting rules, veto rights, etc.). Next, we summarize the responsibilities of each of the Consortium Bodies.
+
+\subsubsection{General Assembly}
+
+The General Assembly consists of one representative of each partner. Meetings of the General Assembly are chaired by the Coordinator. General Assembly can take the following decisions:
+
+\begin{itemize}
+\item Changes to the Consortium Plan
+\item Entry of a new entity to the Project and approval of the settlement on the conditions of the accession to the Project
+\item Withdrawal of a Party from the consortium and the approval of the settlement on the conditions of the withdrawal
+\item Identification of a breach by a Party of its obligations
+\item Declaration of a Party to be a Defaulting Party
+\item Remedies to be performed by a Defaulting Party
+\item Termination of a Defaulting Party’s participation in the consortium
+\item Proposal to the Funding Authority for a change of the Coordinator
+\item Proposal to the Funding Authority for suspension of all or part of the Project
+\item Proposal to the Funding Authority for termination of the Project and the Consortium Agreement
+\item Appointment of Executive Board members
+\end{itemize}
+
+
+\subsubsection{Executive Board}
+
+The Executive Board consists of the Coordinator and the members appointed by the General Assembly. The Executive Board is responsible for the proper execution and implementation of the decisions of the General Assembly and monitors the effective and efficient implementation of the Project.
+
+The Executive Board collects information at least every 6 months on the progress of the Project, examines that information to assess the compliance of the Project with the Consortium Plan and, if necessary, proposes modifications of the Consortium Plan to the General Assembly. 
+
+Other responsibilities of the Executive Board are:
+\begin{itemize}
+\item to support the Coordinator in preparing meetings with the European Commission and in preparing related data and deliverables
+\item to prepare the content and timing of press releases and joint publications by the consortium
+\end{itemize}
+
+\subsubsection{Coordinator}
+
+The Coordinator is the intermediary between the Consortium and the European Commission. In addition to its responsibilities as a partner, he has to perform all tasks assigned in the Grant Agreement and the Consortium Agreement.
+
+In particular, the Coordinator is responsible for:
+\begin{itemize}
+\item monitoring compliance by the partners with with their obligations
+\item keeping the address list of Members and other contact persons updated and available 
+\item collecting, reviewing to verify consistency and submitting reports, other deliverables (including financial statements and related certifications) and specific requested documents to the European Commission
+\item transmitting documents and information connected with the project to any other partners concerned
+\item administering the financial contribution of the European Commission
+\item administering amendments to Grant Agreement or Consortium Agreement.
+\end{itemize}
+
+\subsubsection{Innovation Management Board}
+
+An Innovation Management Board (IMB) will be appointed and steered by Red Hat. The IMB shall consist of one representative of each partner.
+The IMB has the following responsibilities:
+
+\begin{itemize}
+
+\item To track the time line of exploitation activities by the different industrial partners. The IMB will track the results of the different exploitation activities and it will react to concrete opportunities that could emerge.
+\item To interact with Open Source Communities and companies to promote the results of the project.
+\item To track piloting and demonstration activities in different industrial and academic conferences
+\item To ensure the dissemination of exploitation activities in interested communities.
+\item To build an informal enterprise advisory board with relevant companies in this field. Furthermore, coinciding with Project meetings, the IMB will invite representatives of key companies to participate in creative round tables. The invited representative will serve as an external advisory board but may also help to discover opportunities for market deployment.    \end{itemize}
+
+\subsection{Management process}
+
+Each partner commits to send a Quarterly Management Report (QMR) to the Project Coordinator. 
+It will describe the technical and management project work done, listing effective time spent on the project. 
+It will mention difficulties, milestones and deliverables (or contributions to deliverables in case of joint deliverables) that have been reached, patents, publications,
+travel and visits. 
+
+The Project Coordinator will be able to track both overall budget burn rates, as well as identify potential problems with individual organizations as a result of this report. This detailed progress reporting is key to early detect and minimize project implementation risks.
+
+The day-by-day progress will be periodically monitored through face-to-face Project Meetings (see Section~\ref{sec:f2f_meetings}). Considering the importance of such meetings for the good progress of the project, their
+duration will be at least two days, possibly three if needed. In
+addition, partners who have common work to do together will receive facilities to continue working together or to start their meeting earlier.
+
+The CloudButton kick-off meeting took place in Tarragona, Spain from 22 to 25 January 2019. During this meeting, the members of the different Consortium Bodies were appointed. The partners also agreed on a roadmap for the first 6 months of the project, and deadlines were agreed for M6 deliverables and Quarterly Management Reports. The next project meeting will take place in London from 17 to 19 July 2019.
+
+\subsection{Deliverables}
+
+The CloudButton consortium has set up a Deliverables Plan (see appendix \ref{appendix:deliverables}) to produce relevant reports to show the progress of the project at given moments during the action. Most of the deliverables are scheduled for month 6 (initial specifications), month 18 (before the first review of the project) and month 34 (before the end of the project). This schedule allows reviewers, project officers and stakeholders to have a clear view of CloudButton achievements at key moments of the action.
+
+\subsubsection{Format, style and structure}
+
+All deliverables of the project are created using the project available deliverable template, all meta-information requested in the template should be filled and all basic sections should be used. The document has two main sections of meta-information: "Summary of the document" and "History of changes".
+
+\bigskip
+The body of each deliverable should contain the following sections:
+
+
+\bigskip
+{
+\def\arraystretch{1.0}
+
+\begin{tabular}{| p{8cm} |}
+\hline
+\rowcolor[gray]{0.8}
+\begin{enumerate}
+    \item Executive summary
+    \item {[Different sections of the deliverable]}
+    \item Conclusions
+    \item References
+    \item Annexes
+\end{enumerate}\\ \hline
+\end{tabular}
+}
+\bigskip
+
+\subsubsection{Procedures}
+
+The deliverables are officially approved by the Technical and Quality Managers. The Technical Manager is responsible for the quality of technical reports, and should review the deliverable documents in the draft state in order to generate the necessary correcting actions. The Quality Manager is responsible for the formal presentation of the deliverables, including format, sections and non-technical information. Table~\ref{tab:roles} shows the different roles involved in the process of quality assurance of a deliverable.
+
+Typically, two rounds of revisions are planned for each deliverable. For example,  we set up the following schedule for M6 deliverables (D2.1, D2.2, D3.1, D4.1, D5.1, and D6.1):
+
+\begin{itemize}
+\item Internal submission: 31 May 2019
+\item First round of revisions: 7 June 2019
+\item Second round of revisions: 14 June 2019
+\item Final submission to EC: 28 June 2019
+\end{itemize}
+
+{
+\def\arraystretch{1.5}
+\begin{table}[htb]
+\caption{Roles in quality assurance of deliverables}
+\label{tab:roles}
+    \begin{tabular}{| p{3.5cm} | p{11.5cm} |}   
+        \hline
+        \rowcolor[gray]{0.8}
+        \textbf{Role} & \textbf{Responsibilities} \\ \hline
+        \textbf{Deliverable leader} &
+        \begin{itemize}[nolistsep]
+            \item Responsible of the document.
+            \item Requests and collects contributions.
+            \item Integrates contributions.
+            \item Principal editor.
+            \item Manages the quality feedback.
+        \end{itemize}
+        \\ \hline
+
+        \textbf{WP Leader} & 
+        \begin{itemize}[nolistsep]
+            \item Assigns the leadership of the report.
+            \item Aligns with the work carried out in the WP.
+            \item Technical supervisor.
+        \end{itemize}
+         \\ \hline
+
+        \textbf{Technical Manager} & 
+        \begin{itemize}[nolistsep]
+            \item Reviews the report content.
+            \item Reports to the Quality Manager and to the Project Coordinator.
+            \item Responsible of the technical quality.
+            \item Aligns with the project's objectives.
+        \end{itemize}
+        \\ \hline
+        
+        \textbf{Quality Manager} & 
+        \begin{itemize}[nolistsep]
+            \item Responsible for coordinating the quality review of each report.
+            \item Asserts that the structure of the report follows the format agreed by the consortium.
+        \end{itemize}
+        \\ \hline        
+        
+    \end{tabular}
+\end{table}
+}
+
+
+\subsubsection{Storage}
+
+Approved documents are stored on the Google Drive repository of the project, and according to their respective dissemination level are also made publicly available at CloudButton website\footnote{\url{http://cloudbutton.eu}}. The version control of deliverables is maintained at the private GitLab repository of the project.
+
+The Coordinator is responsible for uploading the approved version of the deliverable to the European Commission Grant Management Services.
+
+All deliverables are stored using the following name structure:
+
+\bigskip
+
+\textbf{CloudButton$\_$DocumentNumber$\_$DissLevel.FileExtension}
+
+\bigskip
+
+where:
+
+\begin{itemize}
+
+    \item \textbf{DocumentNumber} is the code name of the document (i.e.: Dx.y for a contractual deliverable).
+
+    \item \textbf{DissLevel} provides the dissemination level of the document (i.e. public, confidential).
+
+    \item \textbf{FileExtension} is the extension of the document, usually pdf.
+
+\end{itemize}
+
+
+\subsection{Risk management}
+
+
+Risk management, including continuous risk identification, analysis and applying mitigation actions (both preventative and corrective) is an integral part of the management process in \proj.
+Specifically, our goal is to control and to manage various types of risks in order to successfully accomplish the project objectives on time and according to the budget.
+Based on the partners' experience in managing complex, interdisciplinary and international projects, we have identified six broad categories of possible risks:
+
+\begin{enumerate}
+\item Technological risks, which may result from technological difficulties or significant changes in the industry, impacting the achievements of the expected results and the original project plan.
+\item Management risks, which may be caused by the lack of management capabilities or the absence of well established procedures.
+\item Personnel risks, that can be induced by the absence of qualification or by a staff turnover of a project partner.
+\item Financial risks, which may result from dependence on economic conditions, such as the economic situation of a project partner.
+\item Dissemination risks, which will limit the amount of exposure \proj's research receive both in the scientific community and amongst European citizens.
+\item Exploitation risks, which would limit the ability of the project to create financial gains for the European community and the individual partner organizations.
+\end{enumerate}
+
+Table~\ref{tab:risk} presents an analysis of the potential risks that may affect the success of \proj, together with the proposed means to address them.
+Each mitigation action is chosen accordingly to its impact on the project and the category of the risk.
+To minimize the effect of the risks listed in Table~\ref{tab:risk}, some mitigation steps have already been taken during the project planning stage and during the first months of the project; others will be taken during the course of the project, as additional risks are identified, according to the principles laid out below.
+As a general guideline, we recognize that close coordination among the partners is a key factor in identifying, assessing and overcoming risks.
+
+{
+\noindent
+\def\arraystretch{1.3}
+\begin{longtable} {| p{0.31\textwidth} | p{0.12\textwidth} | p{0.48\textwidth} | }
+  \caption{
+    \label{tab:risk}
+    Critical risks for implementation}\\
+\hline
+\rowcolor[gray]{0.8}
+\textbf{Description of risk} & 
+\textbf{Work\newline package(s)\newline involved} & 
+\textbf{Proposed risk-mitigation measures} \\ \hline
+ 
+\textbf{Personnel}. Lack of required know-how, possibly as a result of the departure of a key member.\newline
+\textbf{Likelihood}: Low \newline
+\textbf{Impact}: High 
+& All &
+The risk will be minimized due to the following reasons:
+\textbf{Selection of consortium partners}:
+The project team has been carefully selected for its wide relevant experience and capabilities in carrying out successfully the activities of \proj.
+These capabilities were clearly demonstrated in past European projects, academic publications and industrial products.\newline
+\textbf{Back-up plans}:
+The consortium members commit to identify and allocate alternative personnel in the case of the departure of key personnel. \\ \hline
+
+\textbf{Management}. Delays caused by not meeting the tasks deadlines. \newline
+\textbf{Likelihood}: Low \newline
+\textbf{Impact}: High
+& All &
+Partners involved in delayed tasks will allocate additional resources to meet the planned deadlines.  Agile project management and frequent status calls will mitigate the risk of falling behind the schedule. \\ \hline
+
+\textbf{Management}. Problems related to intellectual property (IPR) rights arise during exploitation. \newline
+\textbf{Likelihood}: Low \newline
+\textbf{Impact}: High
+& All &
+The Consortium Agreement will constitute the primary source to resolve IPR issues. The General Assembly may be involved if conflicts remain. \\ \hline
+
+\textbf{Financial}. Deterioration of the economic situation of a partner, that imposes a stop or an unacceptable reduction of all activities for that partner.\newline
+\textbf{Likelihood}: Low \newline
+\textbf{Impact}: High
+& All &
+The corrective measure in this case will be to distribute the pending activities among other partners.
+In the unlikely case where the expertise for an activity cannot be found in the consortium, the consortium will consider bringing a new partner into the project, with the agreement of the EU Project Officer.\newline
+\\ \hline
+
+\textbf{Technological}. The project does not address issues that are relevant to actual industrial sectors.\newline
+\textbf{Likelihood}: Low \newline
+\textbf{Impact}: High
+& All &
+The consortium has a strong industrial involvement.
+The partners have either direct interest in the envisioned solutions, or their clients have this interest.
+In addition, the \proj project is firmly grounded in use cases that have high business and societal values.
+All of this, together with a constant monitoring of the state of the art and an agile adaptation to change will make sure that \proj remains strategic both during the course of the project and for years after. \\ \hline
+\textbf{Technological}. Low quality of produced code.\newline
+\textbf{Likelihood}: Low \newline
+\textbf{Impact}: High
+& All &
+The \proj consortium is built around a well-balanced mix of academic and industrial researchers with partners whose existence depends on their ability to produce solid software products.
+In particular, the experience of open source experts and integrators, such as RedHat, IBM and ATOS, will guarantee the high quality of the software delivered over the course of this project.
+\\ \hline
+
+
+\textbf{Dissemination}. \proj will not obtain wide enough visibility in the scientific community or amongst European citizens.\newline
+\textbf{Likelihood}: Low \newline
+\textbf{Impact}: Medium
+& WP6 &
+\proj is composed of partners with a proven track record in academic publications, as well as in obtaining commercial exposure for their products.
+They will apply the same knowledge and know-hows to the dissemination of the project results. \\ \hline
+
+
+\textbf{Exploitation}. Failure in delivering a relevant solution for serverless data analytics. \newline
+\textbf{Likelihood}: Low \newline
+\textbf{Impact}: High
+& WP5 &
+This risk is mitigated by the participation of IBM and RedHat to the consortium.
+With more details, \proj is built atop open source technologies, in particular, Apache OpenWhisk and Infinispan.
+Because these technologies are adopted by several major players in the field, this prevents other providers (such as Amazon and Microsoft) to lock the market with proprietary solutions.
+ \\ \hline
+
+\textbf{Exploitation}. The selected FaaS technology (Apache OpenWhisk) is superseded by a new more efficient serverless runtime. \newline
+\textbf{Likelihood}: Low \newline
+\textbf{Impact}: Medium
+& WP3 &
+Even though the project focuses on Apache OpenWhisk, many of the project developments will be easily portable to other runtimes.
+This approach will overcome possible vendor lock-ins and it will allow to leverage different FaaS technologies.
+\\ \hline
+
+\textbf{Exploitation}. Failure to contribute to the Open Source community. Due to the advanced nature of the techniques proposed in \proj, it is possible that the approval boards in communities such as the one behind OpenWhisk or Infinispan will be reluctant to include the contributions from \proj. \newline
+\textbf{Likelihood}: Medium \newline
+\textbf{Impact}: Medium
+& WP3, WP4, WP5, WP6 &
+The \proj consortium in general is well introduced to the methodologies and best practices to contribute to open source projects.
+A possible contingency plan is to proceed in a non-technical way, by creating the necessary enthusiasm in the community to accept experimental and/or advanced features in future releases.
+This action is credible due to the presence in the \proj consortium of two important open-source contributors (IBM and RedHat). \\ \hline 
+
+ 
+
+\end{longtable}
+}
+
+
+\subsection{Project communication and collaboration}
+
+Properly communicating on a project is a critical factor to reach the success expectations of the consortium and the funding authority. The \proj project uses several mechanisms and tools for ensuring open and frequent communications among its members:
+\begin{itemize}
+\item electronic mails (e-mail) and mailing list;
+\item face-to-face meetings;
+\item conference calls;
+\item team collaboration tools;
+\item document and source code repositories.
+\end{itemize}
+
+\subsubsection{Electronic mail}
+
+The consortium uses e-mail for requesting or sending non-time-critical information including meeting agendas, meeting minutes and executive summaries. Also, it is the main mechanism used by project partners to share information, proposals and ideas, as well as to prepare deliverables and periodical reports.
+
+An e-mail distribution list is maintained by URV, and available to all the partners. Only the subscribers are allowed to send e-mails to this list. The email address of the project distribution list is: \href{mailto:cloudbutton@urv.cat}{\textbf{cloudbutton@urv.cat}}. Any request to add or remove a member from the project mailing list shall be sent directly to URV. Additional distribution lists can be created as needed.
+
+\subsubsection{Face-to-face meetings}
+\label{sec:f2f_meetings}
+
+Regular face-to-face meetings will be held, at least every 6 months, to tackle discussions on important issues that require the participation and opinion of all partners.
+This is also an opportunity for partners to meet and solve small issues, doubts and requests that do not concern the whole project. Different kinds of face-to-face meetings are envisaged:
+
+\vspace{0.4cm}
+
+\emph{Project meetings}
+
+\begin{itemize}
+\item One meeting at least every 6 months
+\item Hosted by a different partner of the consortium each time. First meeting was held at Tarragona (URV) on 22-25 January 2019. Next meeting will take place in London (Imperial College) from 17 to 19 July 2019.
+\end{itemize}
+
+\emph{General Assembly meetings}
+
+\begin{itemize}
+\item These meetings will be held during the same set of days than Project meetings, but in clearly separated sessions.
+\item The Project Coordinator is the chair of the meeting.
+\end{itemize}
+
+\emph{Extraordinary meetings}
+\begin{itemize}
+\item Extraordinary Technical or Working group meetings will be organized when necessary or upon request made by any of the parties involved.
+\end{itemize}
+
+\emph{Review meetings}
+
+\begin{itemize}
+\item Assessment of the project by the Project Officer and External Project Reviewers.
+\item The planned venue for reviews is Luxembourg.
+\item Tentative schedule:
+\begin{itemize}
+      \item{First review at month 20: August 2020}
+      \item{Final review at month 38: February 2022}
+\end{itemize}
+\end{itemize}
+
+
+\subsubsection{Conference calls}
+
+As an alternative to face-to-face meetings, and to avoid spending time and budget on travelling, the consortium will make use of conference calls. The preferred video chat service is Skype, but teleconference services can also be used whenever a Skype call is not feasible.
+
+\subsubsection{Team collaboration tools}
+
+CloudButton uses Slack as the main team collaboration tool, specially for software developers\footnote{\url{https://cloudbutton-project.slack.com}}.
+
+Slack is a web application for team collaboration that includes direct-messaging capabilities, notifications and alerts, document sharing, group chat and search. Slack also offers integration with many third-party services, including Google Drive and GitHub. It also supports source code snippets and retains formatting for a variety of programming languages, being very useful to share fragments of code.
+
+A Slack workspace is organised in channels. For CloudButton project, different channels were set up for each use case (see Fig.~\ref{fig:slack}). Additional channels can be created to discuss ongoing topics and to collaborate on specific joint works.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=5cm]{figures/slack_channels.png}
+\caption{Available channels at CloudButton Slack workspace.}
+\label{fig:slack}
+\end{figure}
+
+\subsubsection{Document and source code repositories}
+
+The consortium uses Google Drive as the main document repository. This repository is intended to gather all documents generated during the project lifetime (proposal, grant agreement, consortium agreement, meetings slides, minutes, final versions of deliverables, ...). The repository is shared between the members of each partner organisation. Requests for access shall be addressed to URV. 
+
+A set of predefined folders have been created to store different kinds of documents (see Fig.~\ref{fig:drive}). Documents must be uploaded under the appropriate folder and must be clearly named. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=5cm]{figures/drive_organisation.png}
+\caption{Directory organisation of the CloudButton Drive repository.}
+\label{fig:drive}
+\end{figure}
+
+The consortium agreed in using a private GitLab repository as the version control system for source code. GitLab is an git-repository manager released under an open-source license. The GitLab server is hosted by URV\footnote{\url{https://git.cloudlab.urv.cat/}}.
+
+This GitLab repository will be mainly used for:
+\begin{itemize}
+\item Sharing source code between partners.
+\item As version control system for deliverables. Deliverables will be created with LaTeX.
+\item As version control system for other documents like joint academic papers.
+\end{itemize}
+
+The consortium will also use a Github public repository\footnote{\url{https://github.com/cloudbutton}} to made software releases publicly available.
+
+
+\newpage
+
+\section{Innovation Management Plan}
+
+\subsection{Overview}
+
+This chapter intends to deliver an overview of the main approach and tools used to ensure proper innovation management throughout the entire duration of the project. The aim is to determine exploitation opportunities in the context of the material and immaterial results and benefits obtained during the CloudButton project.
+
+The following list contains the key elements to successful innovation management:
+
+\begin{enumerate}
+\item Continuously identify the products, methods and concepts obtained during the execution of the CloudButton project to be exploited.
+\item Identify the audience that should be targeted for outreach for each of the above products.
+\item Identify the key messages and tools that should be used to communicate with the target audience.
+\item Establish strategies to communicate efficiently depending on the channel used to deliver the key messages (conferences, papers, online communities, sales pitches, etc).
+\item Establish responsibilities within the consortium over the appropriate channels that should be targeted by each partner.
+\end{enumerate}
+
+
+The Innovation Management Plan is strongly connected with the Data Management Plan and with the Communication Plan. The former identifies the Intellectual Property Rights (IPR) and processes that will be put in place to use the data, the latter deals with immediate communication aspects which are the supporting basis for exploitation of innovation.
+
+Innovation Management is a continuously evolving activity that should be constantly adjusted during the course of the project to reflect developments and updates.
+
+\subsection{Innovation Products}
+
+As has been described in the project objectives chapter (section~\ref{sec:objectives}), the CloudButton consortium has already identified a set of products deemed as innovative. 
+These products will 
+constitute the initial setup for the innovation management. Those products are briefly described below:
+
+\begin{itemize}
+\item High-Performance Serverless Compute Engine for Big Data
+\item Mutable Shared Data Middleware for Serverless Computing
+\item CloudButton Toolkit: A Serverless Data Analytics Platform
+\end{itemize}
+
+Each of the industrial partners in the project will work to embed the above products within their own business offerings. In particular:
+
+\begin{itemize}
+\item Open Source project contributions (e.g. Infinispan, PyWren)
+\item On-premise and cloud services for high-performance data analytics (e.g. IBM, Red Hat)
+\item Consulting on big data analytics (e.g. IBM, Red Hat, Atos)
+\end{itemize}
+
+The end user partners will also indirectly expose the products in the context of their own business offerings, in the form of the results they can obtain through them.
+
+\subsection{Target Audience and Key Messages}
+
+The CloudButton consortium encompasses expertise and users from different fields, and therefore it is appropriate for each partner to tailor the key messages it wants to deliver to their target audience of choice.
+
+\subsection{Communication Strategies}
+
+Examples of communication strategies to be adopted by the project are listed below:
+
+\begin{itemize}
+\item The project web site \url{http://cloudbutton.eu}, whose main purpose is to provide an overview of the project objectives, the expected results and the involved partners.
+\item Online examples that demonstrate how to use the functionality introduced by the CloudButton project in the context of each project (Infinispan~\cite{infinispan}, PyWren~\cite{PyWren2017}, etc)
+\item Participation at software developer conferences, illustrating the contributions to the software projects and how the benefit big data analytics. This will include presentations, demos and workshops.
+\item Sales-pitches and workshop, possibly involving proof-of-concept implementations, that work the \textit{project products} into the context of a customer environment.
+\end{itemize}
+
+As mentioned in the Overview, the communication strategies will evolve in accordance with new opportunities.
+
+\subsection{Planning and reporting}
+
+To ensure that relevant external or internal opportunities are identified and responded to, all consortium members will contribute to exploitation meetings (in coincidence with ordinary GA meetings) with a report detailing:
+
+\begin{itemize}
+\item the opportunities
+\item the activities implemented to follow them through
+\item any changes to the key message
+\end{itemize}
+
+The report will be key in assessing the progress of exploitation and informing development decisions throughout the project in order to guarantee that the project objectives and products stay relevant in a continuously evolving and adapting approach.
+
+% Mention that CloudButton will actively participate in the collaboration among BIG DATA VALUE PPP funded actions...
+
+\subsection{Big Data Value Public-Private Partnership}
+
+The purpose of the topic under which CloudButton is funded is to implement the contractual Public-Private Partnership "Big Data Value" (Big Data Value PPP)\footnote{\url{http://www.big-data-value.eu}}. 
+CloudButton confirms its ambitions to contribute to Big Data Value PPP activities, awareness raising and communication, contributing in particular to:
+
+\begin{enumerate}
+\item facilitating fulfilling the objectives and obligations expressed in the Contractual Arrangement
+related to the Big Data Value PPP, and which are detailed in the BDVA Strategic Research and Innovation Agenda (SRIA);
+\item actively participating in the collaboration among Big Data Value PPP funded actions regarding
+how CloudButton outcomes and activities could benefit and support the objectives of
+other Big Data Value PPP actions. 
+\end{enumerate}
+
+In practice, these contributions will include:
+
+\begin{itemize}
+\item cooperation between individual Big Data Value PPP actions and joint events to promote
+results of the Big Data Value PPP actions;
+\item fostering exchange of general insights, learnings and activities across Big Data Value PPP
+actions, such as generating recommendations on collaboration and synchronisation of activities,
+including: management of outcomes, common approaches towards
+standardisation, SME involvement, links with regulatory and policy activities;
+\item supporting Big Data Value PPP outreach and dissemination activities by, for instance, presenting Action results at Big Data Value PPP and related national, regional and EC events
+\item sharing, through the Coordinator, relevant information for annual Big Data Value PPP
+Monitoring Reports, including providing key performance indicator (KPI) data in particular on
+additional beneficiary investments to leverage the EC investment.
+\end{itemize}
+
+
+
+\newpage
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+This deliverable presents the approach taken by the CloudButton consortium to properly manage the project. Both the Project Management Plan and the Innovation Management Plan have to be considered as guiding documents to guarantee that the project will adhere to the
+original work plan. 
+
+Furthermore, the tools used by the team to communicate
+internally and externally about the project have been presented. Also, the document enumerates the risks associated with the project and provides the risk mitigation measures that will be considered to minimize those risks.
+
+Over the subsequent months, risks will be regularly updated as part of the project management
+activities.
+
+Likewise, some the processes described in this document will be further presented and discussed in other related documents like the Data Management Plan (D2.2) and the Communication Plan (D6.1).
+
+\newpage
+
+\begin{appendices}
+
+\section{Work plan}
+\label{appendix:work_plan}
+
+\mbox{} 
+\begin{center}
+	\begin{sideways}%[htbp]
+         \begin{minipage}{1.35\linewidth}
+                    \includegraphics[width=\linewidth,keepaspectratio]{figures/CLOUDBUTTON_work_plan}
+         \vspace{0.2cm}
+         \label{fig:xx}
+         \end{minipage}
+    \end{sideways}
+\end{center}
+
+\section{Deliverables plan}
+\label{appendix:deliverables}
+
+{
+\def\arraystretch{1.5}
+\begin{center}
+\begin{longtable}{ |p{1.0cm} | p{4.5cm} | p{1.5cm} | p{1.5cm}  | p{2cm}  | p{2.3cm}  | p{1.3cm} | }
+\hline
+\rowcolor[gray]{.8} \textbf{Deliv. no.} & \textbf{Deliverable Title} &
+  \textbf{WP number} & \textbf{Lead beneficiary} & \textbf{Type} & \textbf{Dissemi-nation level} & \textbf{Due date (in months)} \\ \hline
+
+D1.1 & Public Project Website & WP1 & URV & Websites, patents filling, etc. & Public & 1 \\ \hline
+D1.2 & Management Plan & WP1 & URV & Report & Confidential & 2 \\ \hline
+D2.1 & Experiments and Initial Specifications & WP2 &  URV & Report & Public & 6 \\ \hline
+D2.2 & Data Management Plan, 1st version & WP2 & URV & ORDP: Open Research Data Pilot & Public & 6 \\ \hline
+D2.3 & CloudButton Architecture Specs and Early Prototypes & WP2 & URV & Report & Public & 18 \\ \hline
+D2.4 & Data Management Plan, 2nd Version & WP2 & URV & ORDP: Open Research Data Pilot & Public & 18 \\ \hline
+D2.5 & Reference implementation of architectural building blocks & WP2 & URV & Report & Public & 34 \\ \hline
+D2.6 & Data Management Plan, 3rd Version & WP2 & URV & ORDP: Open Research Data Pilot & Public & 36 \\ \hline
+D3.1 & Initial specs of the Serverless Compute and Execution Engine & WP3 & IBM & Report & Public & 6 \\ \hline
+D3.2 & Serverless Compute Engine Design and Prototypes & WP3 & IBM & Report & Public & 18 \\ \hline
+D3.3 & Serverless Compute Engine Reference Implementation & WP3 & IBM & Report & Public & 34 \\ \hline
+D4.1 & Initial prototype for stateful serverless computation & WP4 & IMT & Report & Public & 6 \\ \hline
+D4.2 & Specification and partial support for degradable objects & WP4 & IMT & Report & Public & 18 \\ \hline
+D4.3 & Full implementation of the BLOSSOM middleware & WP4 & IMT & Report & Public & 34 \\ \hline
+D5.1 & CloudButton Initial API Definition & WP5 & Imperial & Report & Public & 6 \\ \hline
+D5.2 & CloudButton Prototype of Abstractions, Fault-tolerance and Porting Tools & WP5 & Imperial & Report & Public & 18 \\ \hline
+D5.3 & CloudButton Toolkit Reference Implementation & WP5 & Imperial & Report & Public & 34 \\ \hline
+D6.1 & Communication plan & WP6 & RHAT & Report & Public & 6 \\ \hline
+D6.2 & Communication report & WP6 & RHAT & Report & Public & 18 \\ \hline
+D6.3 & Final dissemination, exploitation, and adoption report & WP6 & RHAT & Report & Public & 34 \\ \hline
+
+\end{longtable}
+\end{center}
+}
+
+\end{appendices}
+
+
+
+
+
+%\subsection{A subsection}
+
+%A citation~\cite{open_data_h2020}.
+
+%\begin{figure}[ht]
+%\centering
+%\includegraphics[width=3cm]{figures/eu_flag_eps.eps}
+%\caption{Example1}
+%\label{fig:example1}
+%\end{figure}
+
+%\subsection{Subsection}
+%
+%{
+%\def\arraystretch{1.2}
+%\begin{table}[h!]
+%\caption{Table caption}
+%\label{tab:example}
+%\begin{minipage}{\textwidth} % minipage enables to show footnotes in tables
+%\begin{center}
+%\begin {tabular} {| l | p{8cm} | r | }
+%\hline
+%\rowcolor[gray]{0.8}
+%\textbf{A}  &
+%\textbf{B} &
+%\textbf{CCCCC} \\ \hline
+%a & b & c \\ \hline
+%a & b & c \\ \hline
+%\end{tabular}
+%\end{center}
+%\end{minipage}
+%\end{table}
+%}
+
+%%%% REFERENCES
+
+\newpage %start bibliography at new page
+\bibliographystyle{ieeetr} %long list of styles at:
+\bibliography{citations} %filename of
+
+\end{document}
