@@ -12,7 +12,7 @@ The attacker will roll 3 dice. He must have at least one more army in the territ
 
 ## risk_visual.py
 
-![Screenshot](risk_plot.png)
+![Screenshot](risk_prob.png)
 
 ## risk_data.py
 
