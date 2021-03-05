@@ -10,7 +10,11 @@ The attacker will roll 3 dice. He must have at least one more army in the territ
 
 ![alt text](https://www.ultraboardgames.com/risk/gfx/battle.jpg)
 
-## Some output of the script
+## risk_visual.py
+
+![Screenshot](risk_plot.png)
+
+## risk_data.py
 
 Attacking units | Defending units | Winner | Winning probability
 ------------- | ------------- | ------------- | -------------
