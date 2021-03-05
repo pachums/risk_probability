@@ -2,9 +2,15 @@
 
 The probabilities to win in a classical risk battle. 
 
-The attacker play with 3 dices and the defensor with 2, in case of a tie the defensor wins.
+## Rules for the battle
 
-## Github structure
+Compare the highest die each of are rolled. If the attackers is higher, the defender loses one army from the territory under attack. But if the defender's die is higher than the attacker, he loses one army from the territory.
+
+The attacker will roll 3 dice. He must have at least one more army in the territory than the number of dice is rolling, in the case he has 3 armies, he will play with 2 dice. The defender will roll 2 dice. Likewise, he must have at least 2 armies on the territory under attack, if he have only 1 then he plays with 1 die. 
+
+![alt text](https://www.ultraboardgames.com/risk/gfx/battle.jpg)
+
+## Some output of the script
 
 Attacking units | Defending units | Winner | Winning probability
 ------------- | ------------- | ------------- | -------------
