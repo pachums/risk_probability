@@ -108,22 +108,6 @@ for partidas in range(0,n):
         v2=v2+1
         
 print('RESULTADO:  \n')        
-print('Se han jugado ',partidas+1,' de las cuales...\n','Porcentaje de victorias J1: ',v1/(partidas+1)*100,'\nPorcentaje de victorias J2: ',v2/(partidas+1)*100)                      
+print(f'Se han jugado {partidas+1} de las cuales...\nPorcentaje de victorias J1: {v1/(partidas+1)*100} %\nPorcentaje de victorias J2: {v2/(partidas+1)*100}%')                      
         
-print('J1 ha matado: ',k1,'\nJ2 ha matado: ',k2)
-print('Porcentaje de kills del J1: ', k1/cont*100,'\nPorcentaje de kills del J2: ',k2/cont*100)
-
-##RESUELTO
-#50vs50: 71/28
-#15vs15: 58/42
-#10vs10: 52/48
-#5vs5: 44/56
-#1vs1: 41/58
-
-#15vs20: 29/71
-#17vs20: 42/58
-#18vs20: 48/52
-#19vs20: 54/45
-
-#1000vs1100: 54/45
-#10000vs20000: 53/47
+print(f'J1 ha matado: {k1} unidades, representa el {k1/cont*100:.2f} %\nJ2 ha matado: {k2} unidades, representa el {k2/cont*100:.2f} %')
