@@ -1,6 +1,6 @@
 # Welcome to the stadistics of risk!
 
-The probabilities to win in a classical risk battle..
+The probabilities to win in a classical battle in the board game: **risk**.
 
 ## Rules for the battle
 
